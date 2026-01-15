@@ -2,28 +2,20 @@
   "dependencies": {
     "axios": "^1.13.2",
     "body-parser": "^2.2.1",
+    "cors": "^2.8.5",
     "express": "^5.2.1",
-    "nodemailer": "^7.0.12",
-    "sqlite3": "^5.1.7"
+    "nodemailer": "^7.0.12"
   },
-  "name": "calisma",
+  "name": "secure-register",
   "version": "1.0.0",
-  "description": "��#\u0000 \u0000c\u0000a\u0000l\u0000i\u0000s\u0000m\u0000a\u0000\r\u0000 \u0000",
-  "main": "index.js",
-  "devDependencies": {},
+  "description": "",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/betroxxx/calisma.git"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/betroxxx/calisma/issues"
-  },
-  "homepage": "https://github.com/betroxxx/calisma#readme"
+  "type": "commonjs"
 }

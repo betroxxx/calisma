@@ -10,15 +10,16 @@
 
     <script>
     async function checkSecurity() {
+        // Hafızadan maili oku
         const email = localStorage.getItem("resetEmail");
 
-        // 1. Basit Kontrol: Hafızada mail yoksa at
+        // Mail yoksa direkt at
         if (!email) {
             window.location.href = "sifremi-unuttum.html";
             return;
         }
 
-        // 2. Profesyonel Kontrol: Sunucuya sor (Gerçekten böyle biri işlem yapıyor mu?)
+        // Mail varsa sunucuya sor: "Bu mailin geçerli bir kodu var mı?"
         try {
             const res = await fetch("/api/check-reset-status", {
                 method: "POST",
@@ -27,19 +28,17 @@
             });
             const data = await res.json();
 
-            // Sunucu "Ben böyle bir işlem bilmiyorum" derse
+            // Sunucu "Kod yok/süresi dolmuş" derse at
             if (!data.valid) {
-                localStorage.removeItem("resetEmail"); // Sahte veriyi sil
-                localStorage.removeItem("resetTimerExpiry");
-                window.location.href = "sifremi-unuttum.html"; // Şutla
+                localStorage.removeItem("resetEmail");
+                alert("Oturum süreniz dolmuş veya geçersiz işlem.");
+                window.location.href = "sifremi-unuttum.html";
             }
         } catch (err) {
-            // Sunucu kapalıysa veya hata varsa riske atma, geri gönder
+            // Sunucu kapalıysa riske atma
             window.location.href = "sifremi-unuttum.html";
         }
     }
-
-    // Fonksiyonu çalıştır
     checkSecurity();
 </script>
 </head>
